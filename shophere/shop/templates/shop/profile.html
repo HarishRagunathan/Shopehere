@@ -1,0 +1,41 @@
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %}
+<title>Register | online shopping</title>
+{% endblock title %}
+
+{% block content %}
+<section class=" bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class=" col-12">
+                <h4 class="mb-3">{{request.user}}'s products  <span><a href="{% url 'material_add' %}">add product</a></span></h4>
+                <hr style="border-color: #b8bfc2;">
+                
+            </div>
+            
+                {% for item in profile %}
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card my-3">
+                        <div class="hot"><a href="{% url 'update' item.id %}">update</a><span> </span><a href="{% url 'delete' item.id %}">delete</a></div>
+                        <img src="{{item.product_image.url}}" class="card-image-top" alt="categories">
+                        <a href="{% url 'product_details' item.category.name item.name %}">
+                            
+
+                        <div class="card-body" >
+                            <h5 class="card-tittle text-primary">{{item.name}}</h5>
+                            <p class="card-text">
+                                <span class="float-start n" >Rs.{{item.selling_price | stringformat:"d"}}</span>
+                                
+
+                        </div>
+                    </a>
+                    </div>
+                </div>
+                {% endfor %}
+                
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
